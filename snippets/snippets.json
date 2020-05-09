@@ -1,0 +1,12 @@
+{
+    "If statment": {
+        "prefix": ["cfif"],
+        "body": ["<cfif ${1:condition}>", "$0", "</cfif>"],
+        "description": "An if statment"
+    },
+    "Return statment": {
+        "prefix": ["cfreturn"],
+        "body": ["<cfreturn $1>"],
+        "description": "A return statment"
+    }
+}

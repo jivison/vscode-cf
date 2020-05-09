@@ -1,0 +1,40 @@
+{
+  "name": "coldfusion-language-support",
+  "displayName": "coldfusion-language-support",
+  "description": "Coldfusion language support",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.45.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "cfml",
+        "aliases": [
+          "CFML",
+          "ColdFusion Markup Language"
+        ],
+        "extensions": [
+          ".cfm", ".cfc"
+        ],
+        "configuration": "./cfml.language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "cfml",
+        "scopeName": "source.coldfusionMarkupLanguage",
+        "path": "./syntaxes/cfml.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "cfml",
+        "path": "./snippets/snippets.json"
+      }
+    ]
+  }
+}

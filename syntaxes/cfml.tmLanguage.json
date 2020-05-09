@@ -1,0 +1,92 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "ColdFusion",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#tags"
+    }
+  ],
+  "repository": {
+    "keywords": {
+      "name": "keyword.operator",
+      "match": "(?i)\\b(is|eq|equal|not|neq|gt|greater than|lt|less than|gte|lte)\\b"
+    },
+    "constants": {
+      "patterns": [
+        {
+          "include": "#strings"
+        },
+        {
+          "name": "constant.numeric",
+          "match": "(?<![\\w])(-?\\d+\\.?\\d*)(?![\\w])"
+        },
+        {
+          "name": "constant.numeric",
+          "match": "(true|false)"
+        }
+      ]
+    },
+    "strings": {
+      "name": "string.quoted.double.cf",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.cf",
+          "match": "\\\\."
+        },
+        {
+          "name": "constant.character.hash.cfml.start",
+          "begin": "#",
+          "end": "#",
+          "patterns": [
+            { "include": "#constants" },
+            { "include": "#functioncalls" },
+            { "include": "#scopes" },
+            { "include": "#tags" },
+            { "include": "#indentifiers" },
+            { "include": "#keywords" }
+          ]
+        }
+      ]
+    },
+    "comments": {
+      "name": "comment",
+      "begin": "<!---",
+      "end": "--->"
+    },
+    "attributes": {
+      "name": "entity.other.attribute-name",
+      "match": "\\b(?<![\\.])([\\w])+(?= *= *\")\\b"
+    },
+    "functioncalls": {
+      "name": "support.function",
+      "match": "[\\w_]+(?=\\()"
+    },
+    "tags": {
+      "patterns": [
+        {
+          "name": "entity.name.tag",
+          "begin": "(?i)(?<=<) */?cf[a-z_]*",
+          "end": " *(?=>)",
+          "patterns": [
+            { "include": "#attributes" },
+            { "include": "#constants" },
+            { "include": "#functioncalls" },
+            { "include": "#identifiers" },
+            { "include": "#scopes" },
+            { "include": "#keywords" }
+          ]
+        }
+      ]
+    },
+    "scopes": {
+      "name": "variable.language",
+      "match": "(?<!\\w)(application|arguments|attributes|caller|CGI|client|cookie|flash|form|local|request|server|session|this|thisTag|thread|threadlocal|url)(?![^.\\s\\Z])"
+    }
+  },
+  "scopeName": "source.coldfusionMarkupLanguage"
+}
